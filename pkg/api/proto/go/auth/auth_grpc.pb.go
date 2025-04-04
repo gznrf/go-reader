@@ -4,7 +4,7 @@
 // - protoc             v5.29.3
 // source: auth.proto
 
-package gznrf_auth_proto
+package auth_proto
 
 import (
 	context "context"

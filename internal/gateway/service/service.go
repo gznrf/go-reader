@@ -1,6 +1,8 @@
 package gateway_service
 
 type Authorization interface {
+	Register(email, name, password string) (int64, error)
+	Login(email, password string) (string, error)
 }
 
 type BookService interface {
@@ -13,7 +15,7 @@ type Service struct {
 
 func NewService() *Service {
 	return &Service{
-		Authorization: nil,
+		Authorization: &AuthService{},
 		BookService:   nil,
 	}
 }

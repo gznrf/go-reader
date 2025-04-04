@@ -1,6 +1,6 @@
-package gateway_models
+package models
 
-type CreateUser struct {
+type RegisterUser struct {
 	Name     string `json:"name"`
 	Email    string `json:"email"`
 	Password string `json: "password"`

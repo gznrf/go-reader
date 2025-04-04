@@ -4,7 +4,7 @@
 // 	protoc        v5.29.3
 // source: auth.proto
 
-package gznrf_auth_proto
+package auth_proto
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -241,7 +241,8 @@ const file_auth_proto_rawDesc = "" +
 	"\x05token\x18\x01 \x01(\tR\x05token2\x8b\x01\n" +
 	"\x04Auth\x12E\n" +
 	"\bRegister\x12\x1b.auth_proto.RegisterRequest\x1a\x1c.auth_proto.RegisterResponse\x12<\n" +
-	"\x05Login\x12\x18.auth_proto.LoginRequest\x1a\x19.auth_proto.LoginResponseB\x12Z\x10gznrf.auth.protob\x06proto3"
+	"\x05Login\x12\x18.auth_proto.LoginRequest\x1a\x19.auth_proto.LoginResponseB\fZ\n" +
+	"auth.protob\x06proto3"
 
 var (
 	file_auth_proto_rawDescOnce sync.Once

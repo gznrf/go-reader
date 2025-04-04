@@ -1,9 +1,7 @@
 package gateway_handler
 
 import (
-	"fmt"
 	"log"
-	"net/http"
 
 	"github.com/gorilla/mux"
 	gateway_service "github.com/gznrf/go-reader/internal/gateway/service"
@@ -25,8 +23,8 @@ func (h *Handler) InitRoutes() *mux.Router {
 	auth := router.PathPrefix("/auth").Subrouter()
 	{
 		log.Println("auth routes inited at " + op)
-		auth.HandleFunc("/registration", func(w http.ResponseWriter, r *http.Request) { fmt.Println("Registration echo") }).Methods("POST")
-		auth.HandleFunc("/authorization", func(w http.ResponseWriter, r *http.Request) { fmt.Println("Authorization echo") }).Methods("POST")
+		auth.HandleFunc("/registration", h.Register).Methods("POST")
+		auth.HandleFunc("/authorization", h.Login).Methods("POST")
 	}
 
 	//Books
