@@ -1,6 +1,7 @@
 package gateway_service
 
 type Authorization interface {
+	SetAuthClient(addr string) error
 	Register(email, name, password string) (int64, error)
 	Login(email, password string) (string, error)
 }

@@ -1,0 +1,2 @@
+service_addr: ":2020"
+service_postgres_client_addr: ":3030"
