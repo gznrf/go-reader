@@ -6,26 +6,26 @@ option go_package = "postgres.proto";
 
 
 service Postgres{
-    rpc Register (RegisterRequest) returns (RegisterResponse);
-    rpc Login (LoginRequest) returns (LoginResponse);
+    rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
+    rpc GetUser (GetUserRequest) returns (GetUserResponse);
 }
 
 
-message RegisterRequest {
+message CreateUserRequest {
   string name = 1;
   string email = 2;
   string password_hash = 3;
 }
 
-message RegisterResponse {
+message CreateUserResponse{
   int64 user_id = 1;
 }
 
-message LoginRequest {
+message GetUserRequest {
   string email = 1;
   string password_hash = 2;
 }
 
-message LoginResponse {
-  string token = 1;
+message GetUserResponse {
+  int64 userId = 1;
 }

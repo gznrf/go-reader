@@ -4,10 +4,12 @@ import (
 	"log"
 	"net"
 
+	"github.com/spf13/viper"
+	"google.golang.org/grpc"
+
 	auth_server "github.com/gznrf/go-reader/internal/auth/server"
 	auth_service "github.com/gznrf/go-reader/internal/auth/service"
 	"github.com/gznrf/go-reader/pkg/utils"
-	"github.com/spf13/viper"
 )
 
 func main() {
@@ -21,12 +23,14 @@ func main() {
 		panic("Error with starting auth service")
 	}
 
+	//Init service and set postgres client
 	as := auth_service.NewService()
 	as.SetPostgresClient(viper.GetString("service_postgres_client_addr"))
 
-	gRPCServer := auth_server.NewAuthServer()
-	auth_server.Register(gRPCServer)
-	err = gRPCServer.Serve(l)
+	grpcServer := grpc.NewServer()
+	authServer := auth_server.NewAuthServer(as)
+	auth_server.Register(grpcServer, *authServer)
+	err = grpcServer.Serve(l)
 	if err != nil {
 		panic("Error with starting auth service")
 	}

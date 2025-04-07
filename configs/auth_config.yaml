@@ -1,2 +1,8 @@
 service_addr: ":2020"
 service_postgres_client_addr: ":3030"
+
+password_hash_salt: ""
+
+token:
+  ttl: "12h"
+  secret: ""

@@ -19,16 +19,16 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Postgres_Register_FullMethodName = "/postgres_proto.Postgres/Register"
-	Postgres_Login_FullMethodName    = "/postgres_proto.Postgres/Login"
+	Postgres_CreateUser_FullMethodName = "/postgres_proto.Postgres/CreateUser"
+	Postgres_GetUser_FullMethodName    = "/postgres_proto.Postgres/GetUser"
 )
 
 // PostgresClient is the client API for Postgres service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PostgresClient interface {
-	Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error)
-	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
+	CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserResponse, error)
+	GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*GetUserResponse, error)
 }
 
 type postgresClient struct {
@@ -39,20 +39,20 @@ func NewPostgresClient(cc grpc.ClientConnInterface) PostgresClient {
 	return &postgresClient{cc}
 }
 
-func (c *postgresClient) Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error) {
+func (c *postgresClient) CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RegisterResponse)
-	err := c.cc.Invoke(ctx, Postgres_Register_FullMethodName, in, out, cOpts...)
+	out := new(CreateUserResponse)
+	err := c.cc.Invoke(ctx, Postgres_CreateUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *postgresClient) Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error) {
+func (c *postgresClient) GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*GetUserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(LoginResponse)
-	err := c.cc.Invoke(ctx, Postgres_Login_FullMethodName, in, out, cOpts...)
+	out := new(GetUserResponse)
+	err := c.cc.Invoke(ctx, Postgres_GetUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -63,8 +63,8 @@ func (c *postgresClient) Login(ctx context.Context, in *LoginRequest, opts ...gr
 // All implementations must embed UnimplementedPostgresServer
 // for forward compatibility.
 type PostgresServer interface {
-	Register(context.Context, *RegisterRequest) (*RegisterResponse, error)
-	Login(context.Context, *LoginRequest) (*LoginResponse, error)
+	CreateUser(context.Context, *CreateUserRequest) (*CreateUserResponse, error)
+	GetUser(context.Context, *GetUserRequest) (*GetUserResponse, error)
 	mustEmbedUnimplementedPostgresServer()
 }
 
@@ -75,11 +75,11 @@ type PostgresServer interface {
 // pointer dereference when methods are called.
 type UnimplementedPostgresServer struct{}
 
-func (UnimplementedPostgresServer) Register(context.Context, *RegisterRequest) (*RegisterResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Register not implemented")
+func (UnimplementedPostgresServer) CreateUser(context.Context, *CreateUserRequest) (*CreateUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateUser not implemented")
 }
-func (UnimplementedPostgresServer) Login(context.Context, *LoginRequest) (*LoginResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
+func (UnimplementedPostgresServer) GetUser(context.Context, *GetUserRequest) (*GetUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUser not implemented")
 }
 func (UnimplementedPostgresServer) mustEmbedUnimplementedPostgresServer() {}
 func (UnimplementedPostgresServer) testEmbeddedByValue()                  {}
@@ -102,38 +102,38 @@ func RegisterPostgresServer(s grpc.ServiceRegistrar, srv PostgresServer) {
 	s.RegisterService(&Postgres_ServiceDesc, srv)
 }
 
-func _Postgres_Register_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RegisterRequest)
+func _Postgres_CreateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PostgresServer).Register(ctx, in)
+		return srv.(PostgresServer).CreateUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Postgres_Register_FullMethodName,
+		FullMethod: Postgres_CreateUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresServer).Register(ctx, req.(*RegisterRequest))
+		return srv.(PostgresServer).CreateUser(ctx, req.(*CreateUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Postgres_Login_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(LoginRequest)
+func _Postgres_GetUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PostgresServer).Login(ctx, in)
+		return srv.(PostgresServer).GetUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Postgres_Login_FullMethodName,
+		FullMethod: Postgres_GetUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresServer).Login(ctx, req.(*LoginRequest))
+		return srv.(PostgresServer).GetUser(ctx, req.(*GetUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -146,12 +146,12 @@ var Postgres_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*PostgresServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Register",
-			Handler:    _Postgres_Register_Handler,
+			MethodName: "CreateUser",
+			Handler:    _Postgres_CreateUser_Handler,
 		},
 		{
-			MethodName: "Login",
-			Handler:    _Postgres_Login_Handler,
+			MethodName: "GetUser",
+			Handler:    _Postgres_GetUser_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

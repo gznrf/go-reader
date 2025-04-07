@@ -21,7 +21,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type RegisterRequest struct {
+type CreateUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Email         string                 `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
@@ -30,20 +30,20 @@ type RegisterRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RegisterRequest) Reset() {
-	*x = RegisterRequest{}
+func (x *CreateUserRequest) Reset() {
+	*x = CreateUserRequest{}
 	mi := &file_postgres_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RegisterRequest) String() string {
+func (x *CreateUserRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RegisterRequest) ProtoMessage() {}
+func (*CreateUserRequest) ProtoMessage() {}
 
-func (x *RegisterRequest) ProtoReflect() protoreflect.Message {
+func (x *CreateUserRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_postgres_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -55,53 +55,53 @@ func (x *RegisterRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RegisterRequest.ProtoReflect.Descriptor instead.
-func (*RegisterRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use CreateUserRequest.ProtoReflect.Descriptor instead.
+func (*CreateUserRequest) Descriptor() ([]byte, []int) {
 	return file_postgres_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *RegisterRequest) GetName() string {
+func (x *CreateUserRequest) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *RegisterRequest) GetEmail() string {
+func (x *CreateUserRequest) GetEmail() string {
 	if x != nil {
 		return x.Email
 	}
 	return ""
 }
 
-func (x *RegisterRequest) GetPasswordHash() string {
+func (x *CreateUserRequest) GetPasswordHash() string {
 	if x != nil {
 		return x.PasswordHash
 	}
 	return ""
 }
 
-type RegisterResponse struct {
+type CreateUserResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RegisterResponse) Reset() {
-	*x = RegisterResponse{}
+func (x *CreateUserResponse) Reset() {
+	*x = CreateUserResponse{}
 	mi := &file_postgres_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RegisterResponse) String() string {
+func (x *CreateUserResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RegisterResponse) ProtoMessage() {}
+func (*CreateUserResponse) ProtoMessage() {}
 
-func (x *RegisterResponse) ProtoReflect() protoreflect.Message {
+func (x *CreateUserResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_postgres_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -113,19 +113,19 @@ func (x *RegisterResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RegisterResponse.ProtoReflect.Descriptor instead.
-func (*RegisterResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use CreateUserResponse.ProtoReflect.Descriptor instead.
+func (*CreateUserResponse) Descriptor() ([]byte, []int) {
 	return file_postgres_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *RegisterResponse) GetUserId() int64 {
+func (x *CreateUserResponse) GetUserId() int64 {
 	if x != nil {
 		return x.UserId
 	}
 	return 0
 }
 
-type LoginRequest struct {
+type GetUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
 	PasswordHash  string                 `protobuf:"bytes,2,opt,name=password_hash,json=passwordHash,proto3" json:"password_hash,omitempty"`
@@ -133,20 +133,20 @@ type LoginRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *LoginRequest) Reset() {
-	*x = LoginRequest{}
+func (x *GetUserRequest) Reset() {
+	*x = GetUserRequest{}
 	mi := &file_postgres_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *LoginRequest) String() string {
+func (x *GetUserRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*LoginRequest) ProtoMessage() {}
+func (*GetUserRequest) ProtoMessage() {}
 
-func (x *LoginRequest) ProtoReflect() protoreflect.Message {
+func (x *GetUserRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_postgres_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -158,46 +158,46 @@ func (x *LoginRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use LoginRequest.ProtoReflect.Descriptor instead.
-func (*LoginRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetUserRequest.ProtoReflect.Descriptor instead.
+func (*GetUserRequest) Descriptor() ([]byte, []int) {
 	return file_postgres_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *LoginRequest) GetEmail() string {
+func (x *GetUserRequest) GetEmail() string {
 	if x != nil {
 		return x.Email
 	}
 	return ""
 }
 
-func (x *LoginRequest) GetPasswordHash() string {
+func (x *GetUserRequest) GetPasswordHash() string {
 	if x != nil {
 		return x.PasswordHash
 	}
 	return ""
 }
 
-type LoginResponse struct {
+type GetUserResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	UserId        int64                  `protobuf:"varint,1,opt,name=userId,proto3" json:"userId,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *LoginResponse) Reset() {
-	*x = LoginResponse{}
+func (x *GetUserResponse) Reset() {
+	*x = GetUserResponse{}
 	mi := &file_postgres_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *LoginResponse) String() string {
+func (x *GetUserResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*LoginResponse) ProtoMessage() {}
+func (*GetUserResponse) ProtoMessage() {}
 
-func (x *LoginResponse) ProtoReflect() protoreflect.Message {
+func (x *GetUserResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_postgres_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -209,37 +209,38 @@ func (x *LoginResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use LoginResponse.ProtoReflect.Descriptor instead.
-func (*LoginResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetUserResponse.ProtoReflect.Descriptor instead.
+func (*GetUserResponse) Descriptor() ([]byte, []int) {
 	return file_postgres_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *LoginResponse) GetToken() string {
+func (x *GetUserResponse) GetUserId() int64 {
 	if x != nil {
-		return x.Token
+		return x.UserId
 	}
-	return ""
+	return 0
 }
 
 var File_postgres_proto protoreflect.FileDescriptor
 
 const file_postgres_proto_rawDesc = "" +
 	"\n" +
-	"\x0epostgres.proto\x12\x0epostgres_proto\"`\n" +
-	"\x0fRegisterRequest\x12\x12\n" +
+	"\x0epostgres.proto\x12\x0epostgres_proto\"b\n" +
+	"\x11CreateUserRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x14\n" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x12#\n" +
-	"\rpassword_hash\x18\x03 \x01(\tR\fpasswordHash\"+\n" +
-	"\x10RegisterResponse\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\"I\n" +
-	"\fLoginRequest\x12\x14\n" +
+	"\rpassword_hash\x18\x03 \x01(\tR\fpasswordHash\"-\n" +
+	"\x12CreateUserResponse\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\x03R\x06userId\"K\n" +
+	"\x0eGetUserRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12#\n" +
-	"\rpassword_hash\x18\x02 \x01(\tR\fpasswordHash\"%\n" +
-	"\rLoginResponse\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token2\x9f\x01\n" +
-	"\bPostgres\x12M\n" +
-	"\bRegister\x12\x1f.postgres_proto.RegisterRequest\x1a .postgres_proto.RegisterResponse\x12D\n" +
-	"\x05Login\x12\x1c.postgres_proto.LoginRequest\x1a\x1d.postgres_proto.LoginResponseB\x10Z\x0epostgres.protob\x06proto3"
+	"\rpassword_hash\x18\x02 \x01(\tR\fpasswordHash\")\n" +
+	"\x0fGetUserResponse\x12\x16\n" +
+	"\x06userId\x18\x01 \x01(\x03R\x06userId2\xab\x01\n" +
+	"\bPostgres\x12S\n" +
+	"\n" +
+	"CreateUser\x12!.postgres_proto.CreateUserRequest\x1a\".postgres_proto.CreateUserResponse\x12J\n" +
+	"\aGetUser\x12\x1e.postgres_proto.GetUserRequest\x1a\x1f.postgres_proto.GetUserResponseB\x10Z\x0epostgres.protob\x06proto3"
 
 var (
 	file_postgres_proto_rawDescOnce sync.Once
@@ -255,16 +256,16 @@ func file_postgres_proto_rawDescGZIP() []byte {
 
 var file_postgres_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_postgres_proto_goTypes = []any{
-	(*RegisterRequest)(nil),  // 0: postgres_proto.RegisterRequest
-	(*RegisterResponse)(nil), // 1: postgres_proto.RegisterResponse
-	(*LoginRequest)(nil),     // 2: postgres_proto.LoginRequest
-	(*LoginResponse)(nil),    // 3: postgres_proto.LoginResponse
+	(*CreateUserRequest)(nil),  // 0: postgres_proto.CreateUserRequest
+	(*CreateUserResponse)(nil), // 1: postgres_proto.CreateUserResponse
+	(*GetUserRequest)(nil),     // 2: postgres_proto.GetUserRequest
+	(*GetUserResponse)(nil),    // 3: postgres_proto.GetUserResponse
 }
 var file_postgres_proto_depIdxs = []int32{
-	0, // 0: postgres_proto.Postgres.Register:input_type -> postgres_proto.RegisterRequest
-	2, // 1: postgres_proto.Postgres.Login:input_type -> postgres_proto.LoginRequest
-	1, // 2: postgres_proto.Postgres.Register:output_type -> postgres_proto.RegisterResponse
-	3, // 3: postgres_proto.Postgres.Login:output_type -> postgres_proto.LoginResponse
+	0, // 0: postgres_proto.Postgres.CreateUser:input_type -> postgres_proto.CreateUserRequest
+	2, // 1: postgres_proto.Postgres.GetUser:input_type -> postgres_proto.GetUserRequest
+	1, // 2: postgres_proto.Postgres.CreateUser:output_type -> postgres_proto.CreateUserResponse
+	3, // 3: postgres_proto.Postgres.GetUser:output_type -> postgres_proto.GetUserResponse
 	2, // [2:4] is the sub-list for method output_type
 	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
