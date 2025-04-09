@@ -20,8 +20,8 @@ func NewAuthServer(s *auth_service.Service) *AuthServer {
 	}
 }
 
-func Register(gRPC *grpc.Server, authServer AuthServer) {
+func Register(gRPC *grpc.Server, authServer AuthServer, addr string) {
 	const op = "auth.server"
 	auth_proto.RegisterAuthServer(gRPC, &authServer)
-	log.Printf("server started at %s", op)
+	log.Printf("server started at %s on port %s", op, addr)
 }

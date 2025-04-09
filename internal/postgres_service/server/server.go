@@ -20,8 +20,8 @@ func NewPostgresServer(s *postgres_service.Service) *PostgresServer {
 	}
 }
 
-func Register(gRPC *grpc.Server, postgresServer PostgresServer) {
+func Register(gRPC *grpc.Server, postgresServer PostgresServer, addr string) {
 	const op = "postgres.server"
 	postgres_proto.RegisterPostgresServer(gRPC, &postgresServer)
-	log.Printf("server started at %s", op)
+	log.Printf("server started at %s on port %s", op, addr)
 }

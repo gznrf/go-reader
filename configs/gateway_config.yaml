@@ -1,2 +1,2 @@
 service_addr: ":8080"
-service_auth_client_addr: ":9090"
+service_auth_client_addr: ":2020"

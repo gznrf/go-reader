@@ -18,7 +18,8 @@ func main() {
 		log.Panicf("error with init gateway config - %s", err)
 	}
 
-	l, err := net.Listen("tcp", viper.GetString("service_addr"))
+	serviceAddr := viper.GetString("service_addr")
+	l, err := net.Listen("tcp", serviceAddr)
 	if err != nil {
 		panic("Error with starting auth service")
 	}
@@ -29,7 +30,7 @@ func main() {
 
 	grpcServer := grpc.NewServer()
 	authServer := auth_server.NewAuthServer(as)
-	auth_server.Register(grpcServer, *authServer)
+	auth_server.Register(grpcServer, *authServer, serviceAddr)
 	err = grpcServer.Serve(l)
 	if err != nil {
 		panic("Error with starting auth service")
