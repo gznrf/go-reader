@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"time"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
@@ -35,7 +36,9 @@ func (ps *PostgresService) Register(email, name, password string) (int64, error)
 		return 0, err
 	}
 
-	res, err := ps.postgresClient.CreateUser(context.Background(), &postgres_proto.CreateUserRequest{
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+	res, err := ps.postgresClient.CreateUser(ctx, &postgres_proto.CreateUserRequest{
 		Name:         name,
 		Email:        email,
 		PasswordHash: passwordHash,

@@ -11,6 +11,6 @@ type Service struct {
 
 func NewService() *Service {
 	return &Service{
-		Auth: nil,
+		Auth: &AuthService{},
 	}
 }

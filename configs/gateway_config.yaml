@@ -1,2 +1,2 @@
-service_addr: ":8080"
-service_auth_client_addr: ":2020"
+service_addr: ":1010"
+service_auth_client_addr: "localhost:2020"

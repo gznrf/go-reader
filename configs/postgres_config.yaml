@@ -1,2 +1,2 @@
-service_addr: ":2121"
-service_postgres_client_addr: ":3131"
+service_addr: ":3030"
+service_postgres_client_addr: "localhost:3131"
