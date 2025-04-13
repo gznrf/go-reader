@@ -64,6 +64,7 @@ func (ps *PostgresService) Login(email, password string) (string, error) {
 		Email:        email,
 		PasswordHash: passwordHash,
 	})
+
 	if err != nil {
 		log.Printf("error - %s at %s", err, op)
 		return "", err
