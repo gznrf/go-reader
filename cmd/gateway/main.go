@@ -24,7 +24,7 @@ func main() {
 	}
 	h := gateway_handler.NewHandler(gws)
 	serv := httpserver.NewServer()
-	if err := serv.Run(viper.GetString("service_addr"), h.InitRoutes()); err != nil {
+	if err := serv.Run(viper.GetString("service_addr"), *h.InitRoutes()); err != nil {
 		panic("Error with starting gateway service")
 	}
 }

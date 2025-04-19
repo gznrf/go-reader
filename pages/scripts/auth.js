@@ -1,61 +1,66 @@
-// Здесь мы предполагаем, что конфиг загружается как строка JSON или YAML
-const configYaml = `
-api_base_url: "http://localhost:8080"
-`;
+document.addEventListener("DOMContentLoaded", () => {
+  const loginForm = document.querySelector("#loginForm form");
+  const registerForm = document.querySelector("#registerForm form");
 
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("loginEmail").value.trim();
+    const password = document.getElementById("loginPassword").value.trim();
+    await sendRequest("authorization", email, password);
+  });
 
-// Теперь твой код
-const formTitle = document.getElementById("form-title");
-const nameInput = document.getElementById("name");
-const toggleText = document.getElementById("toggle-text");
-const toggleLink = document.getElementById("toggle-link");
-const form = document.getElementById("auth-form");
-
-let isLogin = true;
-
-toggleLink.addEventListener("click", (e) => {
-  e.preventDefault();
-  isLogin = !isLogin;
-  formTitle.textContent = isLogin ? "Вход" : "Регистрация";
-  nameInput.classList.toggle("hidden", isLogin);
-  toggleText.textContent = isLogin ? "Нет аккаунта?" : "Уже есть аккаунт?";
-  toggleLink.textContent = isLogin ? "Зарегистрироваться" : "Войти";
+  registerForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("registerEmail").value.trim();
+    const password = document.getElementById("registerPassword").value.trim();
+    await sendRequest("registration", email, password);
+  });
 });
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+async function sendRequest(endpoint, email, password) {
+  if (!email || !password) {
+    alert("Поля не должны быть пустыми");
+    return;
+  }
 
-  const name = nameInput.value.trim();
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value.trim();
+  const payload = { email, password };
 
-  // Подготовка данных для запроса
-  const payload = isLogin
-    ? { email, password }  // Для авторизации
-    : { name, email, password };  // Для регистрации
-
-  const url = isLogin
-    ? `${config.api_base_url}/auth/authorization`  // Используем конфиг для авторизации
-    : `${config.api_base_url}/auth/registration`;  // Используем конфиг для регистрации
-
-  // Отправка данных на сервер
   try {
-    const response = await fetch(url, {
+    const response = await fetch(`${API_HOST}/auth/${endpoint}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(payload)
     });
 
-    const data = await response.json();
+    const text = await response.text();
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch (e) {
+      console.warn("Ответ не JSON:", text);
+    }
 
     if (response.ok) {
-      alert(`${isLogin ? "Успешный вход" : "Регистрация успешна"}`);
-      form.reset();
+      alert(endpoint === "authorization" ? "Успешный вход" : "Регистрация успешна");
     } else {
-      alert(data.message || "Ошибка сервера");
+      alert((data && data.message) || "Ошибка запроса");
     }
-  } catch (err) {
-    console.error("Ошибка запроса:", err);
-    alert("Сервер недоступен или ошибка сети.");
+
+  } catch (error) {
+    console.error("Ошибка:", error);
+    alert("Не удалось подключиться к серверу");
   }
-});
+}
+
+function switchTo(form) {
+  const login = document.getElementById("loginForm");
+  const register = document.getElementById("registerForm");
+
+  if (form === "login") {
+    login.classList.add("active");
+    register.classList.remove("active");
+  } else {
+    login.classList.remove("active");
+    register.classList.add("active");
+  }
+}
