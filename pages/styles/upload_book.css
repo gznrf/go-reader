@@ -1,0 +1,111 @@
+/* Общие стили для всего */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    height: 60px;
+    background-color: #4A90E2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    flex: 1;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 15px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.sidebar li:hover {
+    color: #4A90E2;
+}
+
+/* Стили для контента */
+.main-content {
+    flex: 1;
+    background-color: #ffffff;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+
+/* Стиль для формы загрузки книги */
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px;
+    margin-top: 20px;
+}
+
+.upload-form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.upload-form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.upload-form input[type="text"],
+.upload-form input[type="file"],
+.upload-form textarea {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.upload-form textarea {
+    resize: vertical;
+}
+
+.upload-button {
+    align-self: flex-start;
+    background-color: #3498db;
+    color: white;
+    padding: 10px 18px;
+    font-size: 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.upload-button:hover {
+    background-color: #2980b9;
+}

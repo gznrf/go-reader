@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моя Библиотека</title>
+    <link rel="stylesheet" href="../styles/upload_book.css">
+    <script src="../scripts/navigation.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="logo" onclick="navigatePage('../screens/home.html')">Go-Reader</div>
+        <div class="profile-icon">👤</div>
+    </header>
+
+    <div class="container">
+        <nav class="sidebar">
+            <ul>
+                <li onclick="navigatePage('../screens/my_books.html')">Мои книги</li>
+                <li onclick="navigatePage('../screens/books_by_category.html')">Книги по категориям</li>
+                <li onclick="">Добавить книгу</li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <form id="uploadForm" class="upload-form">
+                <div class="form-group">
+                    <label for="file">Выберите файл (PDF):</label>
+                    <input type="file" id="file" accept=".pdf" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="title">Название книги:</label>
+                    <input type="text" id="title" placeholder="Введите название" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="tags">Теги:</label>
+                    <input type="text" id="tags" placeholder="Введите теги через запятую" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Описание:</label>
+                    <textarea id="description" placeholder="Введите описание книги" rows="5" required></textarea>
+                </div>
+
+                <button type="submit" class="upload-button">Загрузить книгу</button>
+            </form>
+        </main>
+    </div>
+</body>
+</html>

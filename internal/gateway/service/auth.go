@@ -4,9 +4,10 @@ import (
 	"context"
 	"log"
 
-	auth_proto "github.com/gznrf/go-reader/pkg/api/proto/go/auth"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
+
+	auth_proto "github.com/gznrf/go-reader/pkg/api/proto/go/auth"
 )
 
 type AuthService struct {

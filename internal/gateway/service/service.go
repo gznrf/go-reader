@@ -1,5 +1,7 @@
 package gateway_service
 
+import "io"
+
 type Authorization interface {
 	SetAuthClient(addr string) error
 	Register(email, name, password string) (int64, error)
@@ -7,6 +9,11 @@ type Authorization interface {
 }
 
 type BookService interface {
+	SetBookClient(addr string) error
+	UploadBook(file io.Reader) (int64, error)
+	GetAllBooks(id int64) error
+	GetBookById(id int64) error
+	DeleteBookById(id int64) error
 }
 
 type Service struct {

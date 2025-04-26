@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book</title>
+  <link rel="stylesheet" href="../styles/book_passport.css">
+  <script src="../scripts/navigation.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="logo" onclick="navigatePage('../screens/home.html')">Go-Reader</div>
+        <div class="profile-icon">👤</div>
+    </header>
+
+  <div class="container">
+    <nav class="sidebar">
+      <ul>
+        <li onclick="navigatePage('../screens/my_books.html')">Мои книги</li>
+        <li onclick="navigatePage('../screens/books_by_category.html')">Книги по категориям</li>
+      </ul>
+    </nav>
+
+    <main class="main-content" id="book-details">
+      <!-- Информация о книге загрузится сюда -->
+    </main>
+  </div>
+
+  <script src="../scripts/book_passport.js"></script>
+</body>
+</html>
